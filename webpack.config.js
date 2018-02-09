@@ -20,6 +20,7 @@ module.exports = {
     extensions: ['', '.js', '.jsx']
   },
   devServer: {
+    headers: { "Access-Control-Allow-Origin": "*" },
     historyApiFallback: true,
     contentBase: './'
   }
