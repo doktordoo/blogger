@@ -18,6 +18,14 @@ class PostsShow extends Component {
     });
   }
 
+  onChangeClick() {
+    const { id } =  this.props.match.params;
+    //this.props.deletePost(id, () => {
+    //    this.props.history.push('/');
+    //});
+  }
+
+
   render() {
     const { post } = this.props;
     const linkStyle = {marginRight: '5px'};
@@ -29,11 +37,13 @@ class PostsShow extends Component {
       <div clasName="container">
         <div className="text-xs-right">
             <Link className="btn btn-link" style={linkStyle} to="/">Back To Index</Link>
+            <button className="btn" onClick={this.onChangeClick.bind(this)}>Change post</button>
             <button className="btn btn-danger pull-xs-right" onClick={this.onDeleteClick.bind(this)}>Delete post</button>
         </div>
-        <div>
-          <h3>{post.title}</h3>
+        <div class="jumbotron">
+          <h1>{post.title}</h1>
           <h6>Categories: {post.categories}</h6>
+          <hr class="my-4" />
           <p>{post.content}</p>
         </div>
       </div>

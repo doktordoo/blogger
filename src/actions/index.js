@@ -1,8 +1,8 @@
 import axios from 'axios';
 import _ from "lodash"; // _ represents lodash
 
-const ROOT_URL = `http://reduxblog.herokuapp.com/api`;
-const API_KEY = `?key=jee123eae0df3`;
+const ROOT_URL = `http://reduxblog.herokuapp.com/api`
+const API_KEY = `?key=jee123eae0df3`
 const URL = `${ROOT_URL}/posts${API_KEY}`;
 // const ROOT_URL = `http://localhost:3000`;
 // const ROOT_URL = `http://localhost:10080/api`;
@@ -11,6 +11,7 @@ export const CREATE_POST = 'create_post';
 export const DELETE_POST = 'delete_post';
 export const FETCH_POSTS = 'fetch_posts';
 export const FETCH_POST = 'fetch_post';
+export const UPDATE_POST = 'update_post';
 
 export function fetchPosts() {
   const request = axios.get(URL)
@@ -54,6 +55,19 @@ export function createPost(values, callback) {
 
   return {
     type: CREATE_POST,
+    payload: request
+  }
+}
+
+export function updatePost(values, callback) {
+  const request = axios.put(URL, values)
+    .then(() => callback())
+    .catch(function(error){
+      console.log(error);
+    });
+
+  return {
+    type: UPDATE_POST,
     payload: request
   }
 }

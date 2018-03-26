@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import _ from "lodash"; // _ represents lodash
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { fetchPosts } from "../actions/index";
+import React, { Component } from 'react';
+import _ from 'lodash'; // _ represents lodash
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { fetchPosts } from '../actions/index';
 
 class PostsIndex extends Component {
     // react lifecycle method -> gets called when component is shown in dom
@@ -16,8 +16,9 @@ class PostsIndex extends Component {
       return _.map(this.props.posts, post => {
         return (
           <li className="list-group-item" key={post.id}>
+            <span className="pull-xs-right">{post.categories}</span>
             <Link to={`/posts/${post.id}`}>
-                  {post.title!=null ? post.title: 'No title defined'}
+                  <strong>{post.title != null ? post.title : 'No title defined'}</strong>
             </Link>
           </li>
         );
@@ -48,5 +49,5 @@ function mapStateToProps(state) {
 
 // 1st arg: mapStateToProps argument
 // 2dn arg: actionCreator
-export default connect(mapStateToProps, { fetchPosts }) (PostsIndex);
+export default connect(mapStateToProps, { fetchPosts })(PostsIndex);
 // {fetchPosts} == { fetchPosts : fetchPosts }
